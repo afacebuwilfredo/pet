@@ -6,11 +6,12 @@ import type { PetMood } from '../types/pet';
 type PetStageProps = {
   emoji: string;
   name: string;
+  species: string;
   moodLabel: string;
   mood: PetMood;
 };
 
-export const PetStage = ({ emoji, name, moodLabel, mood }: PetStageProps) => {
+export const PetStage = ({ emoji, name, species, moodLabel, mood }: PetStageProps) => {
   const bounce = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -33,7 +34,7 @@ export const PetStage = ({ emoji, name, moodLabel, mood }: PetStageProps) => {
   }, [mood, scale]);
 
   return (
-    <View style={styles.stage} accessibilityLabel={`${name}, mood ${moodLabel}`}>
+    <View style={styles.stage} accessibilityLabel={`${name} the ${species}, mood ${moodLabel}`}>
       <View style={styles.halo} />
       <Animated.Text
         style={[
@@ -46,6 +47,7 @@ export const PetStage = ({ emoji, name, moodLabel, mood }: PetStageProps) => {
         {emoji}
       </Animated.Text>
       <Text style={styles.name}>{name}</Text>
+      <Text style={styles.species}>{species}</Text>
       <Text style={styles.mood}>{moodLabel}</Text>
     </View>
   );
@@ -75,8 +77,16 @@ const styles = StyleSheet.create({
     color: colors.ink,
     letterSpacing: -0.4,
   },
+  species: {
+    marginTop: 2,
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.grassDeep,
+    letterSpacing: 0.4,
+    textTransform: 'uppercase',
+  },
   mood: {
-    marginTop: 4,
+    marginTop: 6,
     fontSize: 16,
     fontWeight: '600',
     color: colors.inkMuted,

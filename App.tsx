@@ -4,28 +4,40 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ActionButton } from './components/ActionButton';
 import { PetStage } from './components/PetStage';
 import { StatBar } from './components/StatBar';
+import { APP_NAME, APP_VERSION } from './constants/app';
 import { colors } from './constants/colors';
 import { LEVEL_XP_THRESHOLD } from './constants/pets';
 import { usePet } from './hooks/usePet';
 
 const HomeScreen = () => {
   const { pet, mood, moodLabel, message, handleFeed, handlePlay, handleSleep } = usePet();
+  const xpPercent = Math.max(0, Math.min(100, (pet.xp / LEVEL_XP_THRESHOLD) * 100));
 
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar style="dark" />
       <View style={styles.skyTop} />
       <View style={styles.skyBottom} />
+      <View style={styles.grass} />
 
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.topBar}>
-          <Text style={styles.brand}>Life Buddy</Text>
+          <View>
+            <Text style={styles.brand}>{APP_NAME}</Text>
+            <Text style={styles.tagline}>Your little companion</Text>
+          </View>
           <View style={styles.coinPill} accessibilityLabel={`${pet.coins} coins`}>
-            <Text style={styles.coinText}>{pet.coins} coins</Text>
+            <Text style={styles.coinText}>{pet.coins} 🪙</Text>
           </View>
         </View>
 
-        <PetStage emoji={pet.emoji} name={pet.name} moodLabel={moodLabel} mood={mood} />
+        <PetStage
+          emoji={pet.emoji}
+          name={pet.name}
+          species={pet.species}
+          moodLabel={moodLabel}
+          mood={mood}
+        />
 
         <View style={styles.panel}>
           <View style={styles.metaRow}>
@@ -33,6 +45,14 @@ const HomeScreen = () => {
             <Text style={styles.meta}>
               XP {pet.xp}/{LEVEL_XP_THRESHOLD}
             </Text>
+          </View>
+
+          <View
+            style={styles.xpTrack}
+            accessibilityRole="progressbar"
+            accessibilityLabel={`Experience ${pet.xp} of ${LEVEL_XP_THRESHOLD}`}
+          >
+            <View style={[styles.xpFill, { width: `${xpPercent}%` }]} />
           </View>
 
           <View style={styles.stats}>
@@ -73,6 +93,10 @@ const HomeScreen = () => {
             accessibilityHint="Lets your pet take a nap"
           />
         </View>
+
+        <Text style={styles.version} accessibilityLabel={`App version ${APP_VERSION}`}>
+          v{APP_VERSION}
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -104,6 +128,15 @@ const styles = StyleSheet.create({
     height: '55%',
     backgroundColor: colors.skyBottom,
   },
+  grass: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 18,
+    backgroundColor: colors.grass,
+    opacity: 0.35,
+  },
   content: {
     paddingHorizontal: 20,
     paddingTop: 12,
@@ -120,6 +153,12 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: colors.ink,
     letterSpacing: -0.6,
+  },
+  tagline: {
+    marginTop: 2,
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.inkMuted,
   },
   coinPill: {
     backgroundColor: colors.panel,
@@ -151,6 +190,18 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 13,
   },
+  xpTrack: {
+    height: 8,
+    borderRadius: 999,
+    backgroundColor: colors.barTrack,
+    overflow: 'hidden',
+    marginTop: -6,
+  },
+  xpFill: {
+    height: '100%',
+    borderRadius: 999,
+    backgroundColor: colors.play,
+  },
   stats: {
     gap: 12,
   },
@@ -164,5 +215,12 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     gap: 10,
+  },
+  version: {
+    textAlign: 'center',
+    color: colors.inkMuted,
+    fontSize: 12,
+    fontWeight: '600',
+    opacity: 0.75,
   },
 });

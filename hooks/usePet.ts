@@ -112,7 +112,7 @@ const applyAction = (
 
 export const usePet = () => {
   const [pet, setPet] = useState<Pet>(INITIAL_PET);
-  const [message, setMessage] = useState('Your pet is ready to hang out!');
+  const [message, setMessage] = useState(`${INITIAL_PET.name} is waiting for you. Say hi!`);
 
   const mood = useMemo(() => getMood(pet), [pet]);
   const moodLabel = useMemo(() => getMoodLabel(mood), [mood]);
