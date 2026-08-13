@@ -1,0 +1,150 @@
+:root {
+  --sky: #cfe8e3;
+  --cream: #f7f3ea;
+  --ink: #1f2a24;
+  --muted: #5c6b63;
+  --accent: #e76f51;
+  --play: #2a9d8f;
+  --card: rgba(255, 255, 255, 0.86);
+  --border: rgba(47, 72, 58, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, var(--sky) 0%, var(--cream) 55%);
+  color: var(--ink);
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  line-height: 1.55;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.hero,
+.card,
+footer {
+  width: min(860px, calc(100% - 32px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero {
+  padding: 48px 0 12px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--play);
+  font-size: 13px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(32px, 6vw, 48px);
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  margin-top: 28px;
+  font-size: 22px;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+p,
+li {
+  color: var(--ink);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+code,
+.copy {
+  font-family: Consolas, "Courier New", monospace;
+  background: #eef6f3;
+  border-radius: 8px;
+  padding: 2px 6px;
+}
+
+.copy-block {
+  white-space: pre-wrap;
+  background: #eef6f3;
+  border-radius: 16px;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+a {
+  color: #21867a;
+}
+
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.asset-grid figure {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.asset-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.asset-grid figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.pill {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 8px 8px 0;
+}
+
+footer {
+  padding: 8px 0 48px;
+  color: var(--muted);
+}
+
+nav a {
+  margin-right: 16px;
+  font-weight: 700;
+}
