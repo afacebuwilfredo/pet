@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Life Buddy",
+    "slug": "life-buddy",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#CFE8E3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.littlebuddy.fred"
+    },
+    "android": {
+      "package": "com.littlebuddy.fred",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#CFE8E3",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "067b59dc-b48b-4030-b583-cc0d6a629d9d"
+      }
+    }
+  }
+}
